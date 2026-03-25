@@ -1,28 +1,26 @@
-# manually trigger an action using workflow_dispatch 
-name : Manual Trigger Workflow with loglevel & tags
+name: Manual Trigger Workflow with loglevel & tags
+
 on:
   workflow_dispatch:
     inputs:
       loglevel:
         description: 'Test Log Level'
         required: true
-        default: true
         type: choice
         options:
           - Information
-          - Verbose 
+          - Verbose
           - Debug
-          - Warning 
+          - Warning
           - Critical
-      tags : 
-          description : 'Purpose of running this workflow?'
-          required : true 
-          type : string 
+      tags:
+        description: 'Purpose of running this workflow?'
+        required: true
+        type: string
 
-    jobs :
-      print-tag:
-      runs-on : ubuntu-latest
-      steps : 
-        -name : 'Print Purpose of running the workflow'
-          run : echo  ${{inputs.tags}} purpose
-          
+jobs:
+  print-tag:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Print Purpose of running the workflow
+        run: echo "${{ inputs.tags }} purpose"
