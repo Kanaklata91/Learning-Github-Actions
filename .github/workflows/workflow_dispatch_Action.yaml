@@ -3,10 +3,10 @@ name:  create-sample-ticket
 on : 
   workflow_dispatch:
     inputs:
-      title: "Create tickets"  
-        description : "Issue title"
+      title: 'Create Ticket' 
+        description : 'Issue title'
         required: true
       body: 
-        description : "Issue body"
+        description : 'Issue body'
         required: true
       
