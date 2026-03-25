@@ -1,12 +1,28 @@
-# this is a sample action to learn workflow dispatch which is used when the action is run manually.
-name:  create-sample-ticket
-on : 
+# manually trigger an action using workflow_dispatch 
+name : Manual Trigger Workflow with loglevel & tags
+on:
   workflow_dispatch:
     inputs:
-      title: 'Create Ticket' 
-        description : 'Issue title'
+      loglevel:
+        description: 'Test Log Level'
         required: true
-      body: 
-        description : 'Issue body'
-        required: true
-      
+        default: true
+        type: choice
+        options:
+          - Information
+          - Verbose 
+          - Debug
+          - Warning 
+          - Critical
+      tags : 
+          description : 'Purpose of running this workflow?'
+          required : true 
+          type : string 
+
+    jobs :
+      print-tag:
+      runs-on : ubuntu-latest
+      steps : 
+        -name : 'Print Purpose of running the workflow'
+          run : echo  ${{inputs.tags}} purpose
+          
