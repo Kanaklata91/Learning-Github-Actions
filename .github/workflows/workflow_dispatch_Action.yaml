@@ -23,4 +23,4 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Print Purpose of running the workflow
-        run: echo "${{ inputs.tags }} purpose"
+        run: echo "${{ inputs.tags }} and option selected is ${{inputs.loglevel }} purpose"
