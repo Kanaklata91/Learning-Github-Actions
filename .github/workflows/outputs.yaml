@@ -1,0 +1,18 @@
+name: Jobs outputs example
+on: push
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    outputs:
+      app_version: ${{ steps.SET_VERSION.outputs.VERSION }}
+    steps:
+      - id: SET_VERSION
+        run: |
+          echo "VERSION=1.2.9">> $GITHUB_OUTPUT
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - run: |
+          echo "Deploying version ${{ needs.build.outputs.app_version }}"         
+        
