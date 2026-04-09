@@ -6,7 +6,7 @@ jobs:
    steps:
      - id: SetSoftwareVersion
        run : | 
-            echo "Version==1.30.23" >> $GITHUB_OUTPUT
+            echo "Version=1.30.23" >> $GITHUB_OUTPUT
    outputs:
      appversion : ${{steps.SetSoftwareVersion.outputs.Version}}
 
