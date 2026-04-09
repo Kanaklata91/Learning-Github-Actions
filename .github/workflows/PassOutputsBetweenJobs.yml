@@ -1,0 +1,19 @@
+name : Passing Outputs Between Jobs Using $Github_Output
+on: push
+jobs:
+  firstJob:
+   runs-on: ubuntu-latest
+   steps:
+     - id: SetSoftwareVersion
+       run : | 
+            echo "Version==1.30.23" >> $GITHUB_OUTPUT
+   outputs:
+     appversion : ${{steps.SetSoftwareVersion.outputs.Version}}
+
+  secondJob:
+   runs-on: ubuntu_latest
+   needs : firstJob
+   steps:
+     - run: |
+           echo ${{needs.firstJob.outputs.appversion}}
+  
